@@ -129,18 +129,17 @@ export default function App() {
           {/* Main Banner running the full width of the screen */}
           <section className="w-full bg-emerald-800 text-white shadow-sm border-b border-emerald-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-9">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
+              <div className="relative flex flex-col md:flex-row items-center justify-center gap-4">
+                <div className="text-center">
                   <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
-                    Loan Installment Calculator
+                    {activeSection === 'dsr'
+                      ? 'Debt Service Ratio Calculator'
+                      : 'Loan Installment Calculator'}
                   </h1>
-                  <p className="text-emerald-100 text-sm sm:text-base mt-1.5 max-w-3xl leading-relaxed">
-                    Model loan installments, stress-test prepayment lump sums, and evaluate bank borrowing eligibility with instant amortization schedules.
-                  </p>
                 </div>
 
                 {/* Quick PDF Action trigger */}
-                <div className="shrink-0">
+                <div className="md:absolute md:right-0 shrink-0">
                   <button
                     type="button"
                     onClick={() => setIsPdfModalOpen(true)}
@@ -156,23 +155,9 @@ export default function App() {
 
           {/* Main Container */}
           <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
-            {/* Context Heading when viewing DSR */}
-            {activeSection === 'dsr' && (
-              <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-slate-200/80 gap-4 mb-2">
-                <div>
-                  <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-                    Debt Service Ratio Calculator
-                  </h2>
-                  <p className="text-sm text-slate-600 mt-1 max-w-3xl leading-relaxed">
-                    Assess borrowing capacity, disposable income buffer, and debt servicing limits across income streams and commitments.
-                  </p>
-                </div>
-              </div>
-            )}
-
             {/* Tab 1: Loan Installment Calculator */}
             {activeSection === 'overview' && (
-              <div className="space-y-6 mt-6">
+              <div className="space-y-6">
                 {/* Split Section: Loan Configuration on Left, Monthly Installment & Total Interest Cards on Right */}
                 <section className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
                   {/* Left Side: Loan Configuration & Lump Sum Prepayment Section */}
@@ -231,7 +216,7 @@ export default function App() {
 
             {/* Tab 2: Debt Service Ratio (DSR) & Affordability Only */}
             {activeSection === 'dsr' && (
-              <div className="mt-6">
+              <div className="space-y-6">
                 <DsrCalculator
                   dsrProfile={dsrProfile}
                   dsrResult={dsrResult}

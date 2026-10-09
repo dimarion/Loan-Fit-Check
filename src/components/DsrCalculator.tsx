@@ -270,26 +270,6 @@ export const DsrCalculator: React.FC<DsrCalculatorProps> = ({
                 </div>
               </div>
             )}
-
-            {/* Target DSR Threshold Slider */}
-            <div className="pt-2 border-t border-emerald-100">
-              <div className="flex items-center justify-between text-xs mb-1">
-                <span className="text-slate-700 font-semibold">Target Bank DSR Ceiling</span>
-                <span className="font-mono tabular-nums font-bold text-emerald-800">{dsrProfile.targetDsrLimit}%</span>
-              </div>
-              <input
-                type="range"
-                min="30"
-                max="80"
-                step="5"
-                value={dsrProfile.targetDsrLimit}
-                onChange={(e) => onChange({ targetDsrLimit: parseInt(e.target.value, 10) || 60 })}
-                className="w-full accent-emerald-600 cursor-pointer"
-              />
-              <span className="text-[10px] text-slate-500 block mt-0.5">
-                Most commercial banks enforce a 60% or 70% strict ceiling for loan approvals.
-              </span>
-            </div>
           </div>
         </div>
 
