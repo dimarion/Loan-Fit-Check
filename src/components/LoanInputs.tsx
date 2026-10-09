@@ -217,29 +217,18 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
               </span>
             </div>
 
-            <div className="space-y-1.5">
-              <div className="relative">
-                <input
-                  id="fixed-rate-input"
-                  type="number"
-                  step="0.05"
-                  min="0"
-                  max="35"
-                  value={params.fixedAnnualRate}
-                  onChange={handleRateChange}
-                  className="w-full pr-8 pl-3 py-1.5 text-sm font-mono tabular-nums bg-slate-50/70 border border-slate-200 rounded-lg focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-slate-300 focus:border-slate-500"
-                />
-                <Percent className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2" />
-              </div>
+            <div className="relative">
               <input
-                type="range"
-                min="0.5"
-                max="20"
+                id="fixed-rate-input"
+                type="number"
                 step="0.05"
+                min="0"
+                max="35"
                 value={params.fixedAnnualRate}
                 onChange={handleRateChange}
-                className="w-full accent-slate-800 cursor-pointer"
+                className="w-full pr-8 pl-3 py-1.5 text-sm font-mono tabular-nums bg-slate-50/70 border border-slate-200 rounded-lg focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-slate-300 focus:border-slate-500"
               />
+              <Percent className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2" />
             </div>
           </div>
 

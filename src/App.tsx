@@ -86,7 +86,6 @@ export default function App() {
     <div className="min-h-screen bg-slate-50/70 text-slate-900 pb-16">
       {/* Top Bar adhering to strict 3-zone contract */}
       <Header
-        onExportPdf={() => setIsPdfModalOpen(true)}
         activeSection={activeSection}
         setActiveSection={setActiveSection}
       />
@@ -98,17 +97,21 @@ export default function App() {
           <div>
             <div className="flex flex-wrap items-center gap-2 text-xs mb-2">
               <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-semibold border border-slate-200 text-[11px]">
-                Installment Engine
+                {activeSection === 'dsr' ? 'Affordability Engine' : 'Installment Engine'}
               </span>
               <span className="px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-700 font-semibold border border-teal-200/60 text-[11px]">
-                Amortization & DSR
+                {activeSection === 'dsr' ? 'Debt Service Ratio (DSR)' : 'Amortization & Schedule'}
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-              Loan Installment & Debt Service Ratio Calculator
+              {activeSection === 'dsr'
+                ? 'Debt Service Ratio Calculator'
+                : 'Loan Installment Calculator'}
             </h1>
             <p className="text-sm text-slate-600 mt-1 max-w-3xl leading-relaxed">
-              Model loan installments, stress-test prepayment lump sums, and evaluate bank borrowing eligibility with instant amortization schedules.
+              {activeSection === 'dsr'
+                ? 'Assess borrowing capacity, disposable income buffer, and debt servicing limits across income streams and commitments.'
+                : 'Model loan installments, stress-test prepayment lump sums, and evaluate bank borrowing eligibility with instant amortization schedules.'}
             </p>
           </div>
 
