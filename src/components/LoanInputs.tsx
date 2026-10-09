@@ -237,7 +237,7 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
 
           {/* Lump Sum Form */}
           <div className="p-4 bg-slate-50/80 rounded-xl border border-slate-200/90 mt-2">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 items-end">
               {/* Prepayment Amount */}
               <div>
                 <label htmlFor="lump-sum-amount" className="text-[11px] font-semibold text-slate-700 block mb-1">
