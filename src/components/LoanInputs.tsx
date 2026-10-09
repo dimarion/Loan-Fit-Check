@@ -103,8 +103,7 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
             <Coins className="w-5 h-5 text-slate-700" />
           </div>
           <div>
-            <h2 className="text-base font-bold text-slate-900 tracking-tight">Loan Configuration</h2>
-            <p className="text-xs text-slate-500 mt-0.5">Adjust principal, tenure, interest rate, and lump sum prepayments.</p>
+            <h2 className="text-base font-bold text-slate-900 tracking-tight">Loan Details</h2>
           </div>
         </div>
 
@@ -112,12 +111,7 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {/* 1. Principal Loan Amount */}
           <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label htmlFor="principal-input" className="text-xs font-semibold text-slate-700">Principal Amount</label>
-              <span className="text-xs text-slate-800 font-mono font-bold tabular-nums">
-                {params.currencySymbol}{params.principal.toLocaleString()}
-              </span>
-            </div>
+            <label htmlFor="principal-input" className="block text-xs font-semibold text-slate-700 mb-1.5">Principal Amount</label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-slate-400 font-medium">
                 {params.currencySymbol}
@@ -135,14 +129,9 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
             </div>
           </div>
 
-          {/* 2. Loan Tenure */}
+          {/* 2. Loan Term */}
           <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-semibold text-slate-700">Tenure</label>
-              <span className="text-xs text-slate-800 font-mono font-bold tabular-nums">
-                {totalTenureMonths} Mos ({params.tenureYears}y {params.tenureMonths > 0 ? `${params.tenureMonths}m` : ''})
-              </span>
-            </div>
+            <label className="block text-xs font-semibold text-slate-700 mb-1.5">Term</label>
 
             <div className="grid grid-cols-2 gap-2">
               <div>
@@ -174,12 +163,7 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
 
           {/* 3. Fixed Annual Interest Rate */}
           <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label htmlFor="fixed-rate-input" className="text-xs font-semibold text-slate-700">Annual Interest Rate</label>
-              <span className="text-xs font-bold text-slate-800 font-mono tabular-nums">
-                {params.fixedAnnualRate.toFixed(2)}% p.a.
-              </span>
-            </div>
+            <label htmlFor="fixed-rate-input" className="block text-xs font-semibold text-slate-700 mb-1.5">Annual Interest Rate</label>
 
             <div className="relative">
               <input
@@ -275,7 +259,7 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
                     >
                       {Array.from({ length: maxYears }, (_, i) => i + 1).map((yr) => (
                         <option key={yr} value={yr}>
-                          Year {yr} (Month {Math.min(totalTenureMonths, yr * 12)})
+                          Year {yr}
                         </option>
                       ))}
                     </select>
@@ -313,11 +297,11 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
                     onChange={(e) => setFrequency(e.target.value as LumpSumFrequency)}
                     className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-slate-300 focus:border-slate-500 cursor-pointer"
                   >
-                    <option value="one_time">One-time (Single Payment)</option>
-                    {isMultiYear && <option value="annually">Annually (Every Year)</option>}
-                    <option value="semi_annually">Semi-Annually (Every 6 Mos)</option>
-                    <option value="quarterly">Quarterly (Every 3 Mos)</option>
-                    <option value="monthly">Monthly (Recurring)</option>
+                    <option value="one_time">One-time</option>
+                    {isMultiYear && <option value="annually">Annually</option>}
+                    <option value="semi_annually">Semi-Annually</option>
+                    <option value="quarterly">Quarterly</option>
+                    <option value="monthly">Monthly</option>
                   </select>
                 </div>
               </div>
@@ -333,8 +317,8 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
                   onChange={(e) => setEffect(e.target.value as PrepaymentEffect)}
                   className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-slate-300 focus:border-slate-500 cursor-pointer"
                 >
-                  <option value="reduce_tenure">Reduce Tenure (Max Savings)</option>
-                  <option value="reduce_installment">Reduce Installment (Recast)</option>
+                  <option value="reduce_tenure">Reduce Term</option>
+                  <option value="reduce_installment">Reduce Installment</option>
                 </select>
               </div>
 

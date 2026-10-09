@@ -134,14 +134,14 @@ export const LumpSumManager: React.FC<LumpSumManagerProps> = ({
             onClick={() => handleAddQuickPreset(10000, 1, 'reduce_tenure', 'Year 1 Bonus ($10k)')}
             className="text-xs px-2.5 py-1.5 bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 rounded-md text-neutral-700 transition-colors cursor-pointer"
           >
-            + {currencySymbol}10k at Year 1 (Cut Tenure)
+            + {currencySymbol}10k at Year 1 (Cut Term)
           </button>
           <button
             type="button"
             onClick={() => handleAddQuickPreset(25000, 3, 'reduce_tenure', 'Year 3 Lump Sum ($25k)')}
             className="text-xs px-2.5 py-1.5 bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 rounded-md text-neutral-700 transition-colors cursor-pointer"
           >
-            + {currencySymbol}25k at Year 3 (Cut Tenure)
+            + {currencySymbol}25k at Year 3 (Cut Term)
           </button>
           <button
             type="button"
@@ -269,8 +269,8 @@ export const LumpSumManager: React.FC<LumpSumManagerProps> = ({
               onChange={(e) => setEffect(e.target.value as PrepaymentEffect)}
               className="w-full px-2.5 py-1.5 text-xs bg-white border border-neutral-200 rounded focus:outline-hidden focus:ring-1 focus:ring-neutral-900 cursor-pointer"
             >
-              <option value="reduce_tenure">Shorten Tenure (Max Interest Saved)</option>
-              <option value="reduce_installment">Recast Monthly Payment (Cashflow Relief)</option>
+              <option value="reduce_tenure">Shorten Term</option>
+              <option value="reduce_installment">Recast Monthly Payment</option>
             </select>
           </div>
 

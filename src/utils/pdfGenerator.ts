@@ -127,11 +127,11 @@ export function generateRepaymentPlanPdf(options: GeneratePdfOptions): void {
   currentY += 16;
 
   const facilityRows = [
-    ['Principal Loan Amount', formatCurrency(loanParams.principal, currency), 'Tenure', `${loanParams.tenureYears} Years (${loanParams.tenureYears * 12 + loanParams.tenureMonths} Months)`],
+    ['Principal Loan Amount', formatCurrency(loanParams.principal, currency), 'Term', `${loanParams.tenureYears} Years (${loanParams.tenureYears * 12 + loanParams.tenureMonths} Months)`],
     ['Annual Interest Rate', `${loanParams.fixedAnnualRate.toFixed(2)}% Fixed p.a.`, 'Start Month', loanParams.startDate],
     ['Total Principal + Interest', formatCurrency(calcResult.totalRepayment, currency), 'Lump Sum Prepayments', formatCurrency(calcResult.totalLumpSum, currency)],
     ['Standard Payoff Date', calcResult.originalPayoffDate, 'Accelerated Payoff', calcResult.payoffDate],
-    ['Total Interest Saved', formatCurrency(calcResult.interestSavedComparedToBase, currency), 'Tenure Reduced', `${Math.floor(calcResult.monthsSaved / 12)} Yrs ${calcResult.monthsSaved % 12} Mos`],
+    ['Total Interest Saved', formatCurrency(calcResult.interestSavedComparedToBase, currency), 'Term Reduced', `${Math.floor(calcResult.monthsSaved / 12)} Yrs ${calcResult.monthsSaved % 12} Mos`],
   ];
 
   autoTable(doc, {

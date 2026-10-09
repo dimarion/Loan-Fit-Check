@@ -47,49 +47,6 @@ export const AmortizationSchedule: React.FC<AmortizationScheduleProps> = ({
     return filteredMonths.slice(start, start + itemsPerPage);
   }, [filteredMonths, page, itemsPerPage]);
 
-  // Export CSV
-  const handleExportCsv = () => {
-    const headers = [
-      'Month',
-      'Date',
-      'Year',
-      'Beginning Balance',
-      'Installment',
-      'Principal',
-      'Interest',
-      'Lump Sum',
-      'Ending Balance',
-      'Annual Rate (%)',
-      'Cumulative Interest',
-    ];
-
-    const rows = calcResult.monthlySchedule.map((m) => [
-      m.monthIndex,
-      m.dateStr,
-      m.yearNumber,
-      m.beginningBalance.toFixed(2),
-      m.regularInstallment.toFixed(2),
-      m.principalPaid.toFixed(2),
-      m.interestPaid.toFixed(2),
-      m.lumpSumPaid.toFixed(2),
-      m.endingBalance.toFixed(2),
-      m.annualRate.toFixed(2),
-      m.cumulativeInterest.toFixed(2),
-    ]);
-
-    const csvContent =
-      'data:text/csv;charset=utf-8,' +
-      [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
-
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `Amortization_Schedule_${Date.now()}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <div className="bg-white border border-slate-200/90 rounded-xl p-5 sm:p-6 shadow-xs ring-1 ring-slate-100 mt-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
@@ -105,7 +62,7 @@ export const AmortizationSchedule: React.FC<AmortizationScheduleProps> = ({
           </div>
         </div>
 
-        {/* View mode toggle & CSV export button */}
+        {/* View mode toggle */}
         <div className="flex flex-wrap items-center gap-2">
           <div className="inline-flex p-1 bg-slate-100/80 rounded-lg border border-slate-200">
             <button
@@ -137,16 +94,6 @@ export const AmortizationSchedule: React.FC<AmortizationScheduleProps> = ({
               Monthly Breakdown
             </button>
           </div>
-
-          <button
-            type="button"
-            onClick={handleExportCsv}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-white hover:bg-slate-50 border border-slate-200 rounded-lg text-slate-700 transition-colors shadow-2xs cursor-pointer"
-            title="Download CSV"
-          >
-            <FileSpreadsheet className="w-3.5 h-3.5 text-slate-600" />
-            <span>Export CSV</span>
-          </button>
         </div>
       </div>
 
