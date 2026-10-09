@@ -14,6 +14,7 @@ import { DsrCalculator } from './components/DsrCalculator';
 import { AmortizationSchedule } from './components/AmortizationSchedule';
 import { PdfExportModal } from './components/PdfExportModal';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
+import { FinancialSeoGuide } from './components/FinancialSeoGuide';
 import {
   CreditCard,
   Percent,
@@ -25,6 +26,17 @@ import {
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>('overview');
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
+
+  // Dynamic SEO title sync
+  useEffect(() => {
+    if (activeSection === 'privacy') {
+      document.title = 'Privacy Policy – The Loan Calculator';
+    } else if (activeSection === 'dsr') {
+      document.title = 'Debt Service Ratio (DSR) Calculator – Bank Eligibility & Limits';
+    } else {
+      document.title = 'The Loan Calculator – Loan Installment & Debt Service Ratio Calculator';
+    }
+  }, [activeSection]);
 
   // Sync hash routing for direct links like #privacy or #dsr
   useEffect(() => {
@@ -235,6 +247,9 @@ export default function App() {
                 />
               </div>
             )}
+
+            {/* SEO Financial Insights & Comprehensive FAQ Guide */}
+            <FinancialSeoGuide />
           </main>
         </>
       )}

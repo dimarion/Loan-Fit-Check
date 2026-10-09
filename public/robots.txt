@@ -1,0 +1,5 @@
+# Robots.txt for loanfitcheck.com
+User-agent: *
+Allow: /
+
+Sitemap: https://loanfitcheck.com/sitemap.xml
