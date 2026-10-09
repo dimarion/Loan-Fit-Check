@@ -12,7 +12,6 @@ import { Header } from './components/Header';
 import { LoanInputs } from './components/LoanInputs';
 import { DsrCalculator } from './components/DsrCalculator';
 import { AmortizationSchedule } from './components/AmortizationSchedule';
-import { AnnualAllocationCard } from './components/AnnualAllocationCard';
 import { PdfExportModal } from './components/PdfExportModal';
 import {
   CreditCard,
@@ -147,7 +146,7 @@ export default function App() {
                 />
               </div>
 
-              {/* Right Side: Monthly Installment and Total Interest Cards + Annual Allocation Card */}
+              {/* Right Side: Monthly Installment and Total Interest Cards */}
               <div className="md:col-span-5 lg:col-span-5 xl:col-span-5 flex flex-col gap-4 md:sticky md:top-20">
                 {/* Card 1: Monthly Installment (Emerald/Teal Theme) */}
                 <div className="bg-gradient-to-br from-white via-emerald-50/25 to-teal-50/35 border border-emerald-200/90 rounded-xl p-5 shadow-xs ring-1 ring-emerald-100/60 flex flex-col justify-between transition-all hover:shadow-sm">
@@ -198,12 +197,6 @@ export default function App() {
                     </p>
                   </div>
                 </div>
-
-                {/* Card 3: Annual Allocation Card (Below the total loan interest card) */}
-                <AnnualAllocationCard
-                  yearlySchedule={calcResult.yearlySchedule}
-                  currencySymbol={currency}
-                />
               </div>
             </section>
 
