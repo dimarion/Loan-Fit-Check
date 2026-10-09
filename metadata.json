@@ -1,0 +1,6 @@
+{
+  "name": "EquiLoan - Loan & Debt Service Ratio Calculator",
+  "description": "Calculate loan installments, debt service ratios (DSR), fixed and variable rate amortization schedules, and lump sum prepayment impacts with downloadable PDF reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
