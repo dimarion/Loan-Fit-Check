@@ -133,24 +133,6 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
                 placeholder="e.g. 400000"
               />
             </div>
-
-            {/* Quick amount increment buttons */}
-            <div className="flex flex-wrap gap-1 mt-2">
-              {[50000, 100000, 250000, 500000, 750000, 1000000].map((amt) => (
-                <button
-                  key={amt}
-                  type="button"
-                  onClick={() => onChange({ principal: amt })}
-                  className={`text-[10px] px-2 py-0.5 rounded-md border transition-all cursor-pointer font-mono tabular-nums ${
-                    params.principal === amt
-                      ? 'bg-slate-800 text-white border-slate-800 font-semibold shadow-2xs'
-                      : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:text-slate-800 hover:bg-slate-100/60'
-                  }`}
-                >
-                  {params.currencySymbol}{amt >= 1000000 ? `${amt / 1000000}M` : `${amt / 1000}k`}
-                </button>
-              ))}
-            </div>
           </div>
 
           {/* 2. Loan Tenure */}
@@ -187,24 +169,6 @@ export const LoanInputs: React.FC<LoanInputsProps> = ({
                   className="w-full px-2.5 py-1 text-sm font-mono tabular-nums bg-slate-50/70 border border-slate-200 rounded-lg focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-slate-300 focus:border-slate-500"
                 />
               </div>
-            </div>
-
-            {/* Quick Tenure Buttons */}
-            <div className="flex flex-wrap gap-1 mt-2">
-              {[1, 5, 10, 15, 20, 30].map((yr) => (
-                <button
-                  key={yr}
-                  type="button"
-                  onClick={() => onChange({ tenureYears: yr, tenureMonths: 0 })}
-                  className={`text-[10px] px-2 py-0.5 rounded-md border transition-all cursor-pointer font-mono tabular-nums ${
-                    params.tenureYears === yr && params.tenureMonths === 0
-                      ? 'bg-slate-800 text-white border-slate-800 font-semibold shadow-2xs'
-                      : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:text-slate-800 hover:bg-slate-100/60'
-                  }`}
-                >
-                  {yr}y
-                </button>
-              ))}
             </div>
           </div>
 

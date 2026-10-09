@@ -90,43 +90,49 @@ export default function App() {
         setActiveSection={setActiveSection}
       />
 
-      {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
-        {/* Hero Section & Context Banner */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-slate-200/80 gap-4">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 text-xs mb-2">
-              <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-semibold border border-slate-200 text-[11px]">
-                {activeSection === 'dsr' ? 'Affordability Engine' : 'Installment Engine'}
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-700 font-semibold border border-teal-200/60 text-[11px]">
-                {activeSection === 'dsr' ? 'Debt Service Ratio (DSR)' : 'Amortization & Schedule'}
-              </span>
+      {/* Main Banner running the full width of the screen */}
+      <section className="w-full bg-emerald-800 text-white shadow-sm border-b border-emerald-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-9">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+                Loan Installment Calculator
+              </h1>
+              <p className="text-emerald-100 text-sm sm:text-base mt-1.5 max-w-3xl leading-relaxed">
+                Model loan installments, stress-test prepayment lump sums, and evaluate bank borrowing eligibility with instant amortization schedules.
+              </p>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-              {activeSection === 'dsr'
-                ? 'Debt Service Ratio Calculator'
-                : 'Loan Installment Calculator'}
-            </h1>
-            <p className="text-sm text-slate-600 mt-1 max-w-3xl leading-relaxed">
-              {activeSection === 'dsr'
-                ? 'Assess borrowing capacity, disposable income buffer, and debt servicing limits across income streams and commitments.'
-                : 'Model loan installments, stress-test prepayment lump sums, and evaluate bank borrowing eligibility with instant amortization schedules.'}
-            </p>
-          </div>
 
-          {/* Quick PDF Action trigger */}
-          <div className="shrink-0">
-            <button
-              type="button"
-              onClick={() => setIsPdfModalOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50/80 rounded-lg transition-colors shadow-2xs cursor-pointer"
-            >
-              <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
-              <span>Export Full PDF Summary</span>
-            </button>
+            {/* Quick PDF Action trigger */}
+            <div className="shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsPdfModalOpen(true)}
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs sm:text-sm font-semibold text-emerald-950 bg-white hover:bg-emerald-50 rounded-lg transition-colors shadow-sm cursor-pointer"
+              >
+                <ArrowUpRight className="w-4 h-4 text-emerald-800" />
+                <span>Export Full PDF Summary</span>
+              </button>
+            </div>
           </div>
         </div>
+      </section>
+
+      {/* Main Container */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+        {/* Context Heading when viewing DSR */}
+        {activeSection === 'dsr' && (
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-slate-200/80 gap-4 mb-2">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                Debt Service Ratio Calculator
+              </h2>
+              <p className="text-sm text-slate-600 mt-1 max-w-3xl leading-relaxed">
+                Assess borrowing capacity, disposable income buffer, and debt servicing limits across income streams and commitments.
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Tab 1: Loan Installment Calculator */}
         {activeSection === 'overview' && (
