@@ -15,6 +15,8 @@ import { AmortizationSchedule } from './components/AmortizationSchedule';
 import { PdfExportModal } from './components/PdfExportModal';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { FinancialSeoGuide } from './components/FinancialSeoGuide';
+import { CarLoanDsrArticle } from './components/CarLoanDsrArticle';
+import { MortgageAmortizationArticle } from './components/MortgageAmortizationArticle';
 import {
   CreditCard,
   Percent,
@@ -27,41 +29,70 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<string>('overview');
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
 
-  // Dynamic SEO title sync
+  // Dynamic SEO title & Canonical URL sync
   useEffect(() => {
+    let canonical = document.querySelector("link[rel='canonical']") as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+
     if (activeSection === 'privacy') {
       document.title = 'Privacy Policy – The Loan Calculator';
+      canonical.href = 'https://loanfitcheck.com/privacy-policy';
     } else if (activeSection === 'dsr') {
       document.title = 'Debt Service Ratio (DSR) Calculator – Bank Eligibility & Limits';
+      canonical.href = 'https://loanfitcheck.com/debt-service-ratio-calculator';
     } else {
-      document.title = 'The Loan Calculator – Loan Installment & Debt Service Ratio Calculator';
+      document.title = 'Amortization Calculator: Monthly Loan Payment Schedule';
+      canonical.href = 'https://loanfitcheck.com/';
     }
   }, [activeSection]);
 
-  // Sync hash routing for direct links like #privacy or #dsr
+  // Clean SEO URL & Hash Routing Handler
   useEffect(() => {
-    const checkHash = () => {
-      if (window.location.hash === '#privacy') {
+    const handleRoute = () => {
+      const path = window.location.pathname.toLowerCase();
+      const hash = window.location.hash.toLowerCase();
+
+      if (path.includes('privacy') || hash.includes('privacy')) {
         setActiveSection('privacy');
-      } else if (window.location.hash === '#dsr') {
+      } else if (
+        path.includes('debt-service-ratio') ||
+        path.includes('dsr') ||
+        hash === '#dsr' ||
+        hash.includes('debt-service-ratio')
+      ) {
         setActiveSection('dsr');
-      } else if (window.location.hash === '#overview' || window.location.hash === '') {
-        // preserve overview
+      } else if (
+        path.includes('loan-installment') ||
+        path.includes('amortization') ||
+        hash === '#overview' ||
+        hash === '' ||
+        path === '/'
+      ) {
+        setActiveSection('overview');
       }
     };
-    checkHash();
-    window.addEventListener('hashchange', checkHash);
-    return () => window.removeEventListener('hashchange', checkHash);
+
+    handleRoute();
+    window.addEventListener('popstate', handleRoute);
+    window.addEventListener('hashchange', handleRoute);
+    return () => {
+      window.removeEventListener('popstate', handleRoute);
+      window.removeEventListener('hashchange', handleRoute);
+    };
   }, []);
 
   const handleSelectSection = (sec: string) => {
     setActiveSection(sec);
     if (sec === 'privacy') {
-      window.location.hash = 'privacy';
+      window.history.pushState({}, '', '/privacy-policy');
     } else if (sec === 'dsr') {
-      window.location.hash = 'dsr';
+      window.history.pushState({}, '', '/debt-service-ratio-calculator');
     } else {
-      window.location.hash = '';
+      window.history.pushState({}, '', '/');
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -146,7 +177,7 @@ export default function App() {
                   <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
                     {activeSection === 'dsr'
                       ? 'Debt Service Ratio Calculator'
-                      : 'Loan Installment Calculator'}
+                      : 'Amortization Calculator: Monthly Loan Payment Schedule'}
                   </h1>
                 </div>
 
@@ -223,6 +254,9 @@ export default function App() {
                   calcResult={calcResult}
                   params={loanParams}
                 />
+
+                {/* Mortgage Amortization Knowledge & Schedule Ad Copy Article */}
+                <MortgageAmortizationArticle />
               </div>
             )}
 
@@ -235,6 +269,7 @@ export default function App() {
                   currencySymbol={currency}
                   onChange={handleUpdateDsr}
                 />
+                <CarLoanDsrArticle />
               </div>
             )}
 
@@ -275,13 +310,16 @@ export default function App() {
 
             {/* Essential Footer Links */}
             <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-slate-600">
-              <button
-                type="button"
-                onClick={() => handleSelectSection('privacy')}
+              <a
+                href="/privacy-policy"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSelectSection('privacy');
+                }}
                 className="cursor-pointer text-emerald-800 hover:text-emerald-950 underline font-semibold"
               >
                 Privacy Policy
-              </button>
+              </a>
               <span>·</span>
               <a
                 href="https://adssettings.google.com"

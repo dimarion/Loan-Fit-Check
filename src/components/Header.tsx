@@ -29,11 +29,14 @@ export const Header: React.FC<HeaderProps> = ({
           </span>
         </a>
 
-        {/* Navigation links */}
+        {/* Navigation links with clean SEO URLs */}
         <nav className="flex items-center gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm font-medium">
-          <button
-            type="button"
-            onClick={() => setActiveSection('overview')}
+          <a
+            href="/loan-installment-calculator"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveSection('overview');
+            }}
             className={`cursor-pointer whitespace-nowrap shrink-0 transition-all px-3.5 py-1.5 rounded-lg border text-xs sm:text-sm ${
               activeSection === 'overview'
                 ? 'bg-emerald-800 text-white font-semibold border-emerald-900 shadow-2xs hover:bg-emerald-900'
@@ -41,10 +44,13 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             Loan Installment Calculator
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveSection('dsr')}
+          </a>
+          <a
+            href="/debt-service-ratio-calculator"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveSection('dsr');
+            }}
             className={`cursor-pointer whitespace-nowrap shrink-0 transition-all px-3.5 py-1.5 rounded-lg border text-xs sm:text-sm ${
               activeSection === 'dsr'
                 ? 'bg-emerald-800 text-white font-semibold border-emerald-900 shadow-2xs hover:bg-emerald-900'
@@ -52,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             Debt Service Ratio
-          </button>
+          </a>
         </nav>
       </div>
     </header>

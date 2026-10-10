@@ -3,25 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Loan Calculator - Loan & Debt Service Ratio Calculator</title>
+    <title>Amortization Calculator: Monthly Loan Payment Schedule - The Loan Calculator</title>
     <meta name="description" content="Calculate loan installments, debt service ratios (DSR), fixed and variable rate amortization schedules, and lump sum prepayment impacts with downloadable PDF reports." />
     <meta name="keywords" content="loan installment calculator, debt service ratio calculator, DSR calculator, mortgage repayment, amortization schedule, loan prepayment, interest rate calculator, borrowing eligibility, financial calculator" />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="LoanFit Check" />
     <meta name="theme-color" content="#065f46" />
     <link rel="canonical" href="https://loanfitcheck.com/" />
+    <script>
+      // Restore path from 404 redirect if hosted on GitHub Pages or static host
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
 
     <!-- OpenGraph Social Cards -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="The Loan Calculator" />
     <meta property="og:url" content="https://loanfitcheck.com/" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="The Loan Calculator - Loan & Debt Service Ratio Calculator" />
+    <meta property="og:title" content="Amortization Calculator: Monthly Loan Payment Schedule - The Loan Calculator" />
     <meta property="og:description" content="Calculate loan installments, debt service ratios (DSR), fixed and variable rate amortization schedules, and lump sum prepayment impacts with downloadable PDF reports." />
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="The Loan Calculator - Loan & Debt Service Ratio Calculator" />
+    <meta name="twitter:title" content="Amortization Calculator: Monthly Loan Payment Schedule - The Loan Calculator" />
     <meta name="twitter:description" content="Calculate loan installments, debt service ratios (DSR), fixed and variable rate amortization schedules, and lump sum prepayment impacts with downloadable PDF reports." />
 
     <!-- Schema.org JSON-LD Structured Data -->
@@ -86,6 +96,22 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "No. All financial calculations, amortization schedules, and DSR evaluations run 100% locally in your browser (client-side). No financial figures, salaries, debts, or personal details are transmitted or stored on any external server."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What are my chances of getting a car loan with a $30,000 credit card?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Holding a $30,000 credit card balance significantly impacts your Debt Service Ratio (DSR). Auto lenders estimate monthly credit card commitments at 3% to 5% of the balance ($900 to $1,500/month), which can consume 20% to 30% of your monthly income and push you past the 50% to 60% bank DSR approval ceiling."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the importance of knowing my mortgage amortization schedule?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Knowing your mortgage amortization schedule reveals how each monthly payment is divided between principal and interest. It highlights how much total interest you pay over typical 15- or 30-year terms, when your equity begins growing rapidly, and how extra prepayments can save tens of thousands in borrowing costs."
               }
             }
           ]

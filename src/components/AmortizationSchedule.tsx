@@ -48,7 +48,7 @@ export const AmortizationSchedule: React.FC<AmortizationScheduleProps> = ({
   }, [filteredMonths, page, itemsPerPage]);
 
   return (
-    <div className="bg-white border border-slate-200/90 rounded-xl p-5 sm:p-6 shadow-xs ring-1 ring-slate-100 mt-6">
+    <div id="amortization-schedule" className="bg-white border border-slate-200/90 rounded-xl p-5 sm:p-6 shadow-xs ring-1 ring-slate-100 mt-6 scroll-mt-20">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-slate-100 text-slate-700 shadow-2xs">
