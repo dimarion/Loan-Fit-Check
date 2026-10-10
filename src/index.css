@@ -19,3 +19,28 @@
     display: block !important;
   }
 }
+
+/* Explicit Navigation Tab Styles to guarantee dark green when selected and light green when unselected */
+.nav-tab-selected {
+  background-color: #065f46 !important;
+  color: #ffffff !important;
+  border-color: #064e3b !important;
+}
+
+.nav-tab-selected:hover,
+.nav-tab-selected:focus {
+  background-color: #044e39 !important;
+  color: #ffffff !important;
+}
+
+.nav-tab-unselected {
+  background-color: #d1fae5 !important;
+  color: #064e3b !important;
+  border-color: #6ee7b7 !important;
+}
+
+.nav-tab-unselected:hover,
+.nav-tab-unselected:focus {
+  background-color: #a7f3d0 !important;
+  color: #022c22 !important;
+}

@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({
           </span>
         </a>
 
-        {/* Navigation links with clean SEO URLs */}
+        {/* Navigation links with clean SEO URLs and persistent color enforcement */}
         <nav className="flex items-center gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm font-medium">
           <a
             href="/loan-installment-calculator"
@@ -39,9 +39,14 @@ export const Header: React.FC<HeaderProps> = ({
             }}
             className={`cursor-pointer whitespace-nowrap shrink-0 transition-all px-3.5 py-1.5 rounded-lg border text-xs sm:text-sm ${
               activeSection === 'overview'
-                ? 'bg-emerald-800 text-white font-semibold border-emerald-900 shadow-2xs hover:bg-emerald-900'
-                : 'bg-emerald-100/90 text-emerald-900 border-emerald-300/80 font-medium hover:bg-emerald-200 hover:text-emerald-950 hover:border-emerald-400'
+                ? 'nav-tab-selected font-semibold shadow-2xs'
+                : 'nav-tab-unselected font-medium'
             }`}
+            style={
+              activeSection === 'overview'
+                ? { backgroundColor: '#065f46', color: '#ffffff', borderColor: '#064e3b' }
+                : { backgroundColor: '#d1fae5', color: '#064e3b', borderColor: '#6ee7b7' }
+            }
           >
             Loan Installment Calculator
           </a>
@@ -53,9 +58,14 @@ export const Header: React.FC<HeaderProps> = ({
             }}
             className={`cursor-pointer whitespace-nowrap shrink-0 transition-all px-3.5 py-1.5 rounded-lg border text-xs sm:text-sm ${
               activeSection === 'dsr'
-                ? 'bg-emerald-800 text-white font-semibold border-emerald-900 shadow-2xs hover:bg-emerald-900'
-                : 'bg-emerald-100/90 text-emerald-900 border-emerald-300/80 font-medium hover:bg-emerald-200 hover:text-emerald-950 hover:border-emerald-400'
+                ? 'nav-tab-selected font-semibold shadow-2xs'
+                : 'nav-tab-unselected font-medium'
             }`}
+            style={
+              activeSection === 'dsr'
+                ? { backgroundColor: '#065f46', color: '#ffffff', borderColor: '#064e3b' }
+                : { backgroundColor: '#d1fae5', color: '#064e3b', borderColor: '#6ee7b7' }
+            }
           >
             Debt Service Ratio
           </a>
