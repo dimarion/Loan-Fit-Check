@@ -23,6 +23,8 @@ import {
   ArrowUpRight,
   Shield,
   ExternalLink,
+  FileSpreadsheet,
+  ArrowDown,
 } from 'lucide-react';
 
 export default function App() {
@@ -45,8 +47,8 @@ export default function App() {
       document.title = 'Debt Service Ratio (DSR) Calculator – Bank Eligibility & Limits';
       canonical.href = 'https://loanfitcheck.com/debt-service-ratio-calculator';
     } else {
-      document.title = 'Amortization Calculator: Monthly Loan Payment Schedule';
-      canonical.href = 'https://loanfitcheck.com/';
+      document.title = 'Loan Installment Calculator – The Loan Calculator';
+      canonical.href = 'https://loanfitcheck.com/loan-installment-calculator';
     }
   }, [activeSection]);
 
@@ -65,14 +67,21 @@ export default function App() {
         hash.includes('debt-service-ratio')
       ) {
         setActiveSection('dsr');
-      } else if (
-        path.includes('loan-installment') ||
-        path.includes('amortization') ||
-        hash === '#overview' ||
-        hash === '' ||
-        path === '/'
-      ) {
+      } else {
         setActiveSection('overview');
+        if (
+          path.includes('amortization') ||
+          hash.includes('amortization') ||
+          hash === '#amortization-schedule' ||
+          hash === '#schedule'
+        ) {
+          setTimeout(() => {
+            const el = document.getElementById('amortization-schedule');
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 150);
+        }
       }
     };
 
@@ -92,7 +101,7 @@ export default function App() {
     } else if (sec === 'dsr') {
       window.history.pushState({}, '', '/debt-service-ratio-calculator');
     } else {
-      window.history.pushState({}, '', '/');
+      window.history.pushState({}, '', '/loan-installment-calculator');
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -177,7 +186,7 @@ export default function App() {
                   <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
                     {activeSection === 'dsr'
                       ? 'Debt Service Ratio Calculator'
-                      : 'Amortization Calculator: Monthly Loan Payment Schedule'}
+                      : 'Loan Installment Calculator'}
                   </h1>
                 </div>
 
@@ -246,6 +255,36 @@ export default function App() {
                         </div>
                       </div>
                     </div>
+
+                    {/* Link for the Amortization Schedule placed below the Total Loan Interest Card */}
+                    <a
+                      href="#amortization-schedule"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const el = document.getElementById('amortization-schedule');
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }}
+                      className="group bg-white hover:bg-emerald-50/70 border border-slate-200/90 hover:border-emerald-300 rounded-xl p-3.5 shadow-2xs hover:shadow-xs transition-all flex items-center justify-between gap-3 text-slate-800 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="p-1.5 rounded-lg bg-emerald-100 text-emerald-800 shadow-2xs group-hover:scale-105 transition-transform">
+                          <FileSpreadsheet className="w-4 h-4" />
+                        </div>
+                        <div className="min-w-0">
+                          <span className="block text-xs font-bold text-slate-900 group-hover:text-emerald-900 truncate">
+                            Amortization Schedule
+                          </span>
+                          <span className="block text-[11px] text-slate-500 truncate">
+                            View monthly breakdown
+                          </span>
+                        </div>
+                      </div>
+                      <div className="w-6 h-6 rounded-md bg-slate-100 group-hover:bg-emerald-100 text-slate-500 group-hover:text-emerald-800 flex items-center justify-center shrink-0 transition-colors">
+                        <ArrowDown className="w-3.5 h-3.5" />
+                      </div>
+                    </a>
                   </div>
                 </section>
 
@@ -270,16 +309,6 @@ export default function App() {
                   onChange={handleUpdateDsr}
                 />
                 <CarLoanDsrArticle />
-              </div>
-            )}
-
-            {/* Tab 3: Amortization Schedule */}
-            {activeSection === 'schedule' && (
-              <div className="space-y-6 mt-6">
-                <AmortizationSchedule
-                  calcResult={calcResult}
-                  params={loanParams}
-                />
               </div>
             )}
 
